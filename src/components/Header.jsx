@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import './Header.css'
-import diocesisLogo from '../assets/diocesis_jaen.jpg'
-import sanCamiloLogo from '../assets/san_camilo.png'
+import diocesisLogo from '../assets/xxxx1.png'
+import sanCamiloLogo from '../assets/xxxx2.png'
 
 function Header() {
   return (
