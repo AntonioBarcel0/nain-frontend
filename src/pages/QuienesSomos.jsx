@@ -1,6 +1,6 @@
 import './Pages.css'
 import sanCamiloLogo from '../assets/xxxx2.png'
-import diocesisJaenLogo from '../assets/xxxx1.jpg'
+import diocesisJaenLogo from '../assets/xxxx1.png'
 
 function QuienesSomos() {
   return (
