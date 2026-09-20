@@ -61,12 +61,12 @@ function QuienesSomos() {
             <div className="network-list">
               <div className="network-item">
                 <div className="network-column">
-                  <img src={diocesisJaenLogo} alt="Logo Diocesis Jaen" style={{width: '350px', marginBottom: '10px'}} />
-                  <h3 style={{fontSize: '40px'}}>Diócesis de Jaén</h3>
+                  <img src={diocesisJaenLogo} alt="Logo Diocesis Jaen" className="network-logo" />
+                  <h3 className="network-heading">Diócesis de Jaén</h3>
                 </div>
                 <div className="network-column">
-                  <img src={sanCamiloLogo} alt="Logo San Camilo" style={{width: '350px', marginBottom: '10px',marginTop: '60px'}} />
-                  <h3 style={{fontSize: '40px'}}>Red de Centros de Escucha San Camilo (Red CESCUS)</h3>
+                  <img src={sanCamiloLogo} alt="Logo San Camilo" className="network-logo" />
+                  <h3 className="network-heading">Red de Centros de Escucha San Camilo (Red CESCUS)</h3>
                 </div>
               </div>
             </div>

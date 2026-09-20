@@ -2,6 +2,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow-wrap: break-word;
+}
+
+html {
+  overflow-x: hidden;
 }
 
 :root {
@@ -39,7 +44,7 @@ body {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 clamp(16px, 4vw, 20px);
 }
 
 .section {
@@ -47,14 +52,14 @@ body {
 }
 
 .section-title {
-  font-size: 2.2rem;
+  font-size: clamp(1.5rem, 4.5vw, 2.2rem);
   color: var(--primary-color);
   margin-bottom: 20px;
   text-align: center;
 }
 
 .section-subtitle {
-  font-size: 1.6rem;
+  font-size: clamp(1.25rem, 3.5vw, 1.6rem);
   color: var(--secondary-color);
   margin-bottom: 15px;
   margin-top: 40px;
@@ -90,6 +95,51 @@ body {
   margin-bottom: 20px;
 }
 
+.cta-box {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: var(--white);
+  padding: 60px 40px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.cta-box h2 {
+  font-size: clamp(1.6rem, 5vw, 3.5rem);
+  margin-bottom: 15px;
+}
+
+.cta-box p {
+  font-size: clamp(1rem, 3vw, 1.6rem);
+  margin-bottom: 30px;
+}
+
+/* Evita que los hijos de grids se nieguen a encogerse por su min-width:auto
+   por defecto (causa clásica de desbordamiento horizontal en pantallas pequeñas) */
+.reason-card,
+.value-item,
+.footer-section,
+.feature,
+.area-item,
+.network-item,
+.network-column,
+.step,
+.step-content,
+.faq-item,
+.blog-post,
+.contact-info-box,
+.contact-form-box,
+.hero-content,
+.hero-image-container {
+  min-width: 0;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 /* Estilos para iconos de React Icons */
 svg {
   vertical-align: middle;
@@ -106,11 +156,30 @@ h3 svg {
 }
 
 @media (max-width: 768px) {
-  .section-title {
-    font-size: 2rem;
-  }
-  
   .section {
     padding: 40px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 20px;
+  }
+
+  .btn-large {
+    padding: 14px 24px;
+  }
+
+  .cta-box {
+    padding: 36px 20px;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cta-buttons .btn {
+    text-align: center;
   }
 }

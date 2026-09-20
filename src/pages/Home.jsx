@@ -12,8 +12,8 @@ function Home() {
         <div className="container">
           <h2 className="section-title">¿Qué es el Centro de Escucha Naín?</h2>
           <div className="card">
-            <p style={{fontSize: '1.6rem', textAlign: 'center', marginBottom: '20px'}}>
-              Un lugar donde se <strong>escucha</strong> y se <strong>acompaña</strong> a personas 
+            <p className="intro-text">
+              Un lugar donde se <strong>escucha</strong> y se <strong>acompaña</strong> a personas
               en situaciones de duelo por la pérdida de un ser querido, soledad, enfermedad o crisis vital.
             </p>
           </div>
