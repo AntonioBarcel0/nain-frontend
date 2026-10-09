@@ -3,6 +3,8 @@ import { FaPhone, FaEnvelope, FaInstagram, FaMapMarkerAlt, FaClock } from 'react
 import axios from 'axios'
 import './Pages.css'
 
+const API_URL = import.meta.env.VITE_API_URL || ''
+
 function Contacto() {
   const [formData, setFormData] = useState({
     nombre: '',
@@ -27,13 +29,13 @@ function Contacto() {
     setStatus({ type: '', message: '' })
     
     try {
-      const response = await axios.post('/api/contact', formData)
+      const response = await axios.post(`${API_URL}/api/contact`, formData)
       setStatus({ type: 'success', message: response.data.message })
       setFormData({ nombre: '', email: '', telefono: '', mensaje: '' })
     } catch (error) {
       setStatus({ 
         type: 'error', 
-        message: 'Error al enviar el mensaje. Por favor, inténtalo de nuevo o llámanos directamente.' 
+        message: error.response?.data?.message || 'Error al enviar el mensaje. Por favor, inténtalo de nuevo o llámanos directamente.' 
       })
     } finally {
       setLoading(false)
@@ -102,6 +104,7 @@ function Contacto() {
                     name="nombre"
                     value={formData.nombre}
                     onChange={handleChange}
+                    maxLength={100}
                     required
                   />
                 </div>
@@ -114,6 +117,7 @@ function Contacto() {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
+                    maxLength={150}
                   />
                 </div>
                 
@@ -125,6 +129,7 @@ function Contacto() {
                     name="telefono"
                     value={formData.telefono}
                     onChange={handleChange}
+                    maxLength={30}
                     required
                   />
                 </div>
@@ -137,6 +142,7 @@ function Contacto() {
                     value={formData.mensaje}
                     onChange={handleChange}
                     rows="5"
+                    maxLength={3000}
                     placeholder="Cuéntanos brevemente cómo podemos ayudarte..."
                   ></textarea>
                 </div>

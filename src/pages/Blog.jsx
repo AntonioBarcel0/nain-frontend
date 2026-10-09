@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './Pages.css'
 
+const API_URL = import.meta.env.VITE_API_URL || ''
+
 function Blog() {
   const [posts, setPosts] = useState([])
   const [loading, setLoading] = useState(true)
@@ -12,7 +14,7 @@ function Blog() {
   
   const fetchPosts = async () => {
     try {
-      const response = await axios.get('/api/blog/posts')
+      const response = await axios.get(`${API_URL}/api/blog/posts`)
       setPosts(response.data)
     } catch (error) {
       console.error('Error al cargar posts:', error)
