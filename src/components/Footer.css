@@ -38,3 +38,11 @@
   border-top: 1px solid rgba(255,255,255,0.2);
   font-size: 0.9rem;
 }
+
+.footer-bottom a {
+  color: var(--white);
+}
+
+.footer-bottom a:hover {
+  color: var(--accent-color);
+}

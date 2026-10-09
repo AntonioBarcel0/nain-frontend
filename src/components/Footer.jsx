@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { FaPhone, FaEnvelope, FaInstagram } from 'react-icons/fa'
 import './Footer.css'
 
@@ -34,7 +35,7 @@ function Footer() {
         </div>
         
         <div className="footer-bottom">
-          <p>&copy; 2026 Centro de Escucha Naín - Todos los derechos reservados</p>
+          <p>&copy; 2026 Centro de Escucha Naín - Todos los derechos reservados · <Link to="/privacidad">Política de privacidad</Link></p>
         </div>
       </div>
     </footer>

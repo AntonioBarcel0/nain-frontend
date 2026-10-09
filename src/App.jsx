@@ -6,6 +6,7 @@ import QuienesSomos from './pages/QuienesSomos'
 import QueOfrecemos from './pages/QueOfrecemos'
 import ComoFunciona from './pages/ComoFunciona'
 import Contacto from './pages/Contacto'
+import Privacidad from './pages/Privacidad'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/que-ofrecemos" element={<QueOfrecemos />} />
             <Route path="/como-funciona" element={<ComoFunciona />} />
             <Route path="/contacto" element={<Contacto />} />
+            <Route path="/privacidad" element={<Privacidad />} />
           </Routes>
         </main>
         <Footer />

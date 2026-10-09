@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { FaPhone, FaEnvelope, FaInstagram, FaMapMarkerAlt, FaClock } from 'react-icons/fa'
 import axios from 'axios'
 import './Pages.css'
@@ -11,8 +12,13 @@ function Contacto() {
     nombre: '',
     email: '',
     telefono: '',
-    mensaje: ''
+    mensaje: '',
+    privacidad: false,
+    website: ''
   })
+  
+  // Momento en que se abrió el formulario (anti-spam: los bots lo envían al instante)
+  const startTime = useRef(Date.now())
   
   const [status, setStatus] = useState({ type: '', message: '' })
   const [loading, setLoading] = useState(false)
@@ -20,7 +26,7 @@ function Contacto() {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.type === 'checkbox' ? e.target.checked : e.target.value
     })
   }
   
@@ -30,9 +36,12 @@ function Contacto() {
     setStatus({ type: '', message: '' })
     
     try {
-      const response = await axios.post(`${API_URL}/api/contact`, formData)
+      const response = await axios.post(`${API_URL}/api/contact`, {
+        ...formData,
+        elapsed: Date.now() - startTime.current
+      })
       setStatus({ type: 'success', message: response.data.message })
-      setFormData({ nombre: '', email: '', telefono: '', mensaje: '' })
+      setFormData({ nombre: '', email: '', telefono: '', mensaje: '', privacidad: false, website: '' })
     } catch (error) {
       setStatus({ 
         type: 'error', 
@@ -146,6 +155,34 @@ function Contacto() {
                     maxLength={3000}
                     placeholder="Cuéntanos brevemente cómo podemos ayudarte..."
                   ></textarea>
+                </div>
+                
+                {/* Campo trampa anti-spam: oculto para las personas, los bots lo rellenan */}
+                <div className="form-hp" aria-hidden="true">
+                  <label htmlFor="website">No rellenes este campo</label>
+                  <input
+                    type="text"
+                    id="website"
+                    name="website"
+                    value={formData.website}
+                    onChange={handleChange}
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
+                
+                <div className="form-check">
+                  <input
+                    type="checkbox"
+                    id="privacidad"
+                    name="privacidad"
+                    checked={formData.privacidad}
+                    onChange={handleChange}
+                    required
+                  />
+                  <label htmlFor="privacidad">
+                    He leído y acepto la <Link to="/privacidad" target="_blank">política de privacidad</Link>. *
+                  </label>
                 </div>
                 
                 {status.message && (
