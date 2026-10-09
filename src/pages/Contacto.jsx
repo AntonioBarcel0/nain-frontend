@@ -3,7 +3,8 @@ import { FaPhone, FaEnvelope, FaInstagram, FaMapMarkerAlt, FaClock } from 'react
 import axios from 'axios'
 import './Pages.css'
 
-const API_URL = import.meta.env.VITE_API_URL || ''
+// En producción se usa la función serverless de Vercel (/api/contact) del mismo dominio
+const API_URL = import.meta.env.DEV ? (import.meta.env.VITE_API_URL || '') : ''
 
 function Contacto() {
   const [formData, setFormData] = useState({
